@@ -1,0 +1,38 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "nvimconf"
+
+description = ".."
+
+readme = "README.md"
+requires-python = ">=3.7"
+license = "MIT"
+
+
+authors = [
+  { name = "Waylon Walker", email = "waylon@waylonwalker.com" },
+]
+
+
+dependencies = ['markata~=0.6.0.dev0', 'markata-slides', 'markdown-it-py[plugins]']
+dynamic = ["version"]
+
+[tool.hatch.version]
+path = "nvimconf/__about__.py"
+
+[tool.hatch.envs.default]
+dependencies = [
+  "pyinstrument",
+]
+
+[tool.hatch.envs.default.scripts]
+clean = "markata clean"
+build = "markata build"
+tui = "markata tui"
+serve = "python -m http.server 8000 --directory=markout"
+clean-build = ['clean', 'build',]
+clean-tui = ['clean', 'build', 'tui']
+
